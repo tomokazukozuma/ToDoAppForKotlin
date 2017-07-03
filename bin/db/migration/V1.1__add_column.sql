@@ -1,1 +1,0 @@
-ALTER TABLE todo ADD complete_datetime DATETIME AFTER complete_flag;

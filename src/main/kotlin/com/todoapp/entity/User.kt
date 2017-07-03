@@ -13,6 +13,7 @@ import javax.persistence.Table
 data class User(@Id @GeneratedValue var id: Int? = 0,
 				@Column(nullable = false) var name: String = "",
 				@Column(nullable = false) var email: String = "",
+				@JsonIgnore
 				@Column(nullable = false) var password: String = "",
 				@JsonIgnore
 				@Column(name = "insert_datetime", nullable = false) var insertDatetime: Date = Date(),

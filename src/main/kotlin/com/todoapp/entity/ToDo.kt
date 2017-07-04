@@ -11,6 +11,7 @@ import javax.persistence.Table
 @Entity
 @Table(name = "todo")
 data class ToDo (
+
 	@Id
 	@GeneratedValue
 	var id: Int? = 0,

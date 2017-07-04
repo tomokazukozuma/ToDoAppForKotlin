@@ -11,7 +11,9 @@ import javax.persistence.Table
 @Entity
 @Table(name = "user")
 data class User(
-	@Id @GeneratedValue var id: Int? = 0,
+
+	@Id
+	@GeneratedValue var id: Int? = 0,
 
 	@Column(nullable = false)
 	var name: String = "",

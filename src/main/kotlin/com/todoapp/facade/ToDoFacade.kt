@@ -10,7 +10,8 @@ import java.util.Date
 @Service
 class ToDoFacade @Autowired constructor(private val userRepository: UserRepository,
 										private val todoRepository: ToDoRepository) {
-	fun findAllToDo(): MutableList<ToDo> = todoRepository.findAll()
+
+	fun findAllToDo(userId: Int): MutableList<ToDo> = todoRepository.findByUserId(userId)
 
 	fun addToDo(t: ToDo): ToDo {
 		return todoRepository.save(t)

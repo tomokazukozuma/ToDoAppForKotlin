@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) {
 
 	@GetMapping
-	fun getToDoList(): MutableList<ToDo> {
-		return todoFacade.findAllToDo()
+	fun getToDoList(@RequestParam("userId") userId: Int): MutableList<ToDo> {
+		return todoFacade.findAllToDo(userId)
 	}
 
 	@PostMapping

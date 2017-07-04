@@ -27,4 +27,13 @@ class ToDoFacade @Autowired constructor(private val userRepository: UserReposito
 		t.completeDatetime = Date()
 		return todoRepository.save(t)
 	}
+
+	fun deleteToDo() {
+		var t: ToDo = ToDo()
+		t.id = 1
+		t.text = "Done Homework"
+		t.completeFlag = true
+		t.completeDatetime = Date()
+		todoRepository.delete(t)
+	}
 }

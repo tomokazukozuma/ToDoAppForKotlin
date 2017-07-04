@@ -29,7 +29,8 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 	}
 
 	@RequestMapping(method = arrayOf(RequestMethod.DELETE))
-	fun deleteToDo(): ToDo {
-		return todoFacade.addToDo()
+	fun deleteToDo(): String {
+		todoFacade.deleteToDo()
+		return "OK"
 	}
 }

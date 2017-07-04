@@ -12,25 +12,22 @@ class ToDoFacade @Autowired constructor(private val userRepository: UserReposito
 										private val todoRepository: ToDoRepository) {
 	fun findAllToDo(): MutableList<ToDo> = todoRepository.findAll()
 
-	fun addToDo(): ToDo {
-		var t: ToDo = ToDo()
-		t.userId = 1
-		t.text = "Do Homework"
+	fun addToDo(t: ToDo): ToDo {
 		return todoRepository.save(t)
 	}
 
-	fun updateToDo(): ToDo {
+	fun updateToDo(id: Int): ToDo {
 		var t: ToDo = ToDo()
-		t.id = 1
+		t.id = id
 		t.text = "Done Homework"
 		t.completeFlag = true
 		t.completeDatetime = Date()
 		return todoRepository.save(t)
 	}
 
-	fun deleteToDo() {
+	fun deleteToDo(id: Int) {
 		var t: ToDo = ToDo()
-		t.id = 1
+		t.id = id
 		t.text = "Done Homework"
 		t.completeFlag = true
 		t.completeDatetime = Date()

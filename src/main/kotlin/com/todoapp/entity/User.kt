@@ -10,15 +10,28 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "user")
-data class User(@Id @GeneratedValue var id: Int? = 0,
-				@Column(nullable = false) var name: String = "",
-				@Column(nullable = false) var email: String = "",
-				@JsonIgnore
-				@Column(nullable = false) var password: String = "",
-				@JsonIgnore
-				@Column(name = "insert_datetime", nullable = false) var insertDatetime: Date = Date(),
-				@JsonIgnore
-				@Column(name = "update_datetime", nullable = false) var updateDatetime: Date = Date(),
-				@JsonIgnore
-				@Column(name = "delete_flag", nullable = false) var deleteFlag: Boolean = false) {
-}
+data class User(
+	@Id @GeneratedValue var id: Int? = 0,
+
+	@Column(nullable = false)
+	var name: String = "",
+
+	@Column(nullable = false)
+	var email: String = "",
+
+	@JsonIgnore
+	@Column(nullable = false)
+	var password: String = "",
+
+	@JsonIgnore
+	@Column(name = "insert_datetime", nullable = false)
+	var insertDatetime: Date = Date(),
+
+	@JsonIgnore
+	@Column(name = "update_datetime", nullable = false)
+	var updateDatetime: Date = Date(),
+
+	@JsonIgnore
+	@Column(name = "delete_flag", nullable = false)
+	var deleteFlag: Boolean = false
+)

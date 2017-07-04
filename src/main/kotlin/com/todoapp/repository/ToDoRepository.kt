@@ -15,6 +15,11 @@ interface ToDoRepository : JpaRepository<ToDo, Long> {
 
 	@Transactional
 	@Modifying
+	@Query("UPDATE ToDo AS t SET t.text = :text WHERE t.id = :id")
+	fun updateTextById(@Param("id") id: Int, @Param("text") text: String) : Int
+
+	@Transactional
+	@Modifying
 	@Query("UPDATE ToDo AS t SET t.completeFlag = true, completeDatetime = NOW() WHERE t.id = :id")
 	fun updateCompleteFlagById(@Param("id") id: Int) : Int
 }

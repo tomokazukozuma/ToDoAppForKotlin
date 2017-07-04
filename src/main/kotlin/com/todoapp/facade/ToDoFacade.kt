@@ -17,13 +17,15 @@ class ToDoFacade @Autowired constructor(private val userRepository: UserReposito
 		return todoRepository.save(t)
 	}
 
-	fun updateToDo(id: Int): ToDo {
+	fun updateToDoText(id: Int, text: String): ToDo {
 		var t: ToDo = ToDo()
 		t.id = id
-		t.text = "Done Homework"
-		t.completeFlag = true
-		t.completeDatetime = Date()
+		t.text = text
 		return todoRepository.save(t)
+	}
+
+	fun updateToDoCompleteFlag(id: Int): Int {
+		return todoRepository.updateCompleteFlagById(id)
 	}
 
 	fun deleteToDo(id: Int) {

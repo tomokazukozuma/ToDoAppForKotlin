@@ -30,8 +30,14 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 	}
 
 	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.PATCH))
-	fun updateToDo(@PathVariable id: Int): ToDo {
-		return todoFacade.updateToDo(id)
+	fun updateToDoText(@PathVariable id: Int, @RequestParam("text") text: String): ToDo {
+		return todoFacade.updateToDoText(id, text)
+	}
+
+	@RequestMapping(value = "{id:^[0-9]+$}/complete", method = arrayOf(RequestMethod.PATCH))
+	fun updateToDoCompleteFlag(@PathVariable id: Int): String {
+		todoFacade.updateToDoCompleteFlag(id)
+		return "OK"
 	}
 
 	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.DELETE))

@@ -11,10 +11,10 @@ import javax.persistence.Table
 @Entity
 @Table(name = "todo")
 data class ToDo(@Id @GeneratedValue var id: Int? = 0,
-				@Column(nullable = false) var user_id: Int = 0,
+				@Column(name = "user_id", nullable = false) var userId: Int = 0,
 				@Column(nullable = false) var text: String = "",
-				@Column(nullable = false) var complete_flag: Boolean,
-				@Column(nullable = false) var completer_datetime: Date,
+				@Column(name = "complete_flag", nullable = false) var completeFlag: Boolean = false,
+				@Column(name = "complete_datetime", nullable = true) var completeDatetime: Date? = Date(),
 				@JsonIgnore
 				@Column(name = "insert_datetime", nullable = false) var insertDatetime: Date = Date(),
 				@JsonIgnore

@@ -2,6 +2,7 @@ package com.todoapp.controller
 
 import com.todoapp.entity.ToDo
 import com.todoapp.facade.ToDoFacade
+import com.todoapp.responseformat.todo.ToDoResponseFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController
 class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) {
 
 	@GetMapping
-	fun getToDoList(@RequestParam("userId") userId: Int): MutableList<ToDo> {
-		return todoFacade.findAllToDo(userId)
+	fun getToDoList(@RequestParam("userId") userId: Int): ToDoResponseFormat {
+		var todoList: MutableList<ToDo> = todoFacade.findAllToDo(userId)
+		var t: ToDoResponseFormat = ToDoResponseFormat(todoList)
+		return t
 	}
 
 	@PostMapping

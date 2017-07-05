@@ -2,6 +2,7 @@ package com.todoapp.controller
 
 import com.todoapp.entity.ToDo
 import com.todoapp.facade.ToDoFacade
+import com.todoapp.requestformat.todo.AddToDoRequestFormat
 import com.todoapp.responseformat.todo.ToDoResponseFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -26,8 +27,8 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	fun addToDo(@RequestBody todo: ToDo): ToDo {
-		return todoFacade.addToDo(todo)
+	fun addToDo(@RequestBody addToDoRequestFormat: AddToDoRequestFormat): ToDo {
+		return todoFacade.addToDo(addToDoRequestFormat.userId, addToDoRequestFormat.text)
 	}
 
 	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.PATCH))

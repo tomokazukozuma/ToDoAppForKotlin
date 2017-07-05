@@ -16,7 +16,10 @@ class ToDoFacade @Autowired constructor(private val userRepository: UserReposito
 		return ToDoResponseFormat(todoList)
 	}
 
-	fun addToDo(t: ToDo): ToDo {
+	fun addToDo(userId: Int, text: String): ToDo {
+		var t: ToDo = ToDo()
+		t.userId = userId
+		t.text = text
 		return todoRepository.save(t)
 	}
 

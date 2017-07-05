@@ -3,15 +3,18 @@ package com.todoapp.facade
 import com.todoapp.entity.ToDo
 import com.todoapp.repository.ToDoRepository
 import com.todoapp.repository.UserRepository
+import com.todoapp.responseformat.todo.ToDoResponseFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Date
 
 @Service
 class ToDoFacade @Autowired constructor(private val userRepository: UserRepository,
 										private val todoRepository: ToDoRepository) {
 
-	fun findAllToDo(userId: Int): MutableList<ToDo> = todoRepository.findByUserId(userId)
+	fun getToDo(userId: Int): ToDoResponseFormat {
+		var todoList: MutableList<ToDo> = todoRepository.findByUserId(userId)
+		return ToDoResponseFormat(todoList)
+	}
 
 	fun addToDo(t: ToDo): ToDo {
 		return todoRepository.save(t)

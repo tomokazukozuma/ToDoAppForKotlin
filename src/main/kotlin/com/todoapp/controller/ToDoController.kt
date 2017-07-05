@@ -21,9 +21,7 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 
 	@GetMapping
 	fun getToDoList(@RequestParam("userId") userId: Int): ToDoResponseFormat {
-		var todoList: MutableList<ToDo> = todoFacade.findAllToDo(userId)
-		var t: ToDoResponseFormat = ToDoResponseFormat(todoList)
-		return t
+		return todoFacade.getToDo(userId)
 	}
 
 	@PostMapping

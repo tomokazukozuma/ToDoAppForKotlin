@@ -27,8 +27,8 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	fun addToDo(@RequestBody addToDoRequestFormat: AddToDoRequestFormat): ToDo {
-		return todoFacade.addToDo(addToDoRequestFormat.userId, addToDoRequestFormat.text)
+	fun addToDo(@RequestBody requestFormat: AddToDoRequestFormat): ToDo {
+		return todoFacade.addToDo(requestFormat.userId, requestFormat.text)
 	}
 
 	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.PATCH))

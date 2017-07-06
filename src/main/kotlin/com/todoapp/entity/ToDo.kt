@@ -26,7 +26,7 @@ data class ToDo (
 	var completeFlag: Boolean = false,
 
 	@Column(name = "complete_datetime", nullable = true)
-	var completeDatetime: Date? = Date(),
+	var completeDatetime: Date? = null,
 
 	@JsonIgnore
 	@Column(name = "insert_datetime", nullable = false)

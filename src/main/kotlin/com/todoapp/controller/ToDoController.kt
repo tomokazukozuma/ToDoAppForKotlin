@@ -1,8 +1,8 @@
 package com.todoapp.controller
 
-import com.todoapp.entity.ToDo
 import com.todoapp.facade.ToDoFacade
 import com.todoapp.requestformat.todo.AddToDoRequestFormat
+import com.todoapp.responseformat.todo.AddToDoResponseFormat
 import com.todoapp.responseformat.todo.ToDoResponseFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -27,7 +27,7 @@ class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) 
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	fun addToDo(@RequestBody requestFormat: AddToDoRequestFormat): ToDo {
+	fun addToDo(@RequestBody requestFormat: AddToDoRequestFormat): AddToDoResponseFormat {
 		return todoFacade.addToDo(requestFormat.userId, requestFormat.text)
 	}
 

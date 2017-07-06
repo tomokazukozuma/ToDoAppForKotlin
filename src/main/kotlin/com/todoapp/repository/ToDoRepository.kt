@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional
 @Repository
 interface ToDoRepository : JpaRepository<ToDo, Long> {
 
+	fun findOneById(id: Int): ToDo
+
 	fun findByUserId(userId: Int): MutableList<ToDo>
 
 	@Transactional

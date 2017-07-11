@@ -4,9 +4,9 @@ import com.todoapp.requestformat.BaseRequestFormat
 
 data class AddToDoRequestFormat(
 
-	/** ユーザID */
-	var userId: Int = 0,
+    /** ユーザID */
+    var userId: Int = 0,
 
-	/** TODOテキスト */
-	var text: String = ""
+    /** TODOテキスト */
+    var text: String = ""
 ) : BaseRequestFormat()

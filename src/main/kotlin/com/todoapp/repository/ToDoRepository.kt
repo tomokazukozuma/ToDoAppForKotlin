@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional
 @Repository
 interface ToDoRepository : JpaRepository<ToDo, Long> {
 
-	fun findOneById(id: Int): ToDo
+    fun findOneById(id: Int): ToDo
 
-	fun findByUserId(userId: Int): MutableList<ToDo>
+    fun findByUserId(userId: Int): MutableList<ToDo>
 
-	@Transactional
-	@Modifying
-	@Query("UPDATE ToDo AS t SET t.text = :text WHERE t.id = :id")
-	fun updateTextById(@Param("id") id: Int, @Param("text") text: String) : Int
+    @Transactional
+    @Modifying
+    @Query("UPDATE ToDo AS t SET t.text = :text WHERE t.id = :id")
+    fun updateTextById(@Param("id") id: Int, @Param("text") text: String) : Int
 
-	@Transactional
-	@Modifying
-	@Query("UPDATE ToDo AS t SET t.completeFlag = true, completeDatetime = NOW() WHERE t.id = :id")
-	fun updateCompleteFlagById(@Param("id") id: Int) : Int
+    @Transactional
+    @Modifying
+    @Query("UPDATE ToDo AS t SET t.completeFlag = true, completeDatetime = NOW() WHERE t.id = :id")
+    fun updateCompleteFlagById(@Param("id") id: Int) : Int
 }

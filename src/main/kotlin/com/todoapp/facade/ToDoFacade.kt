@@ -13,38 +13,38 @@ import org.springframework.stereotype.Service
 
 @Service
 class ToDoFacade @Autowired constructor(private val userRepository: UserRepository,
-										private val todoRepository: ToDoRepository) {
+                                        private val todoRepository: ToDoRepository) {
 
-	fun getToDo(userId: Int): ToDoResponseFormat {
-		var todoList: MutableList<ToDo> = todoRepository.findByUserId(userId)
-		return ToDoResponseFormat(todoList)
-	}
+    fun getToDo(userId: Int): ToDoResponseFormat {
+      var todoList: MutableList<ToDo> = todoRepository.findByUserId(userId)
+      return ToDoResponseFormat(todoList)
+    }
 
-	fun addToDo(userId: Int, text: String): AddToDoResponseFormat {
-		var t: ToDo = ToDo()
-		t.userId = userId
-		t.text = text
-		var createdToDo: ToDo = todoRepository.save(t)
-		return AddToDoResponseFormat(createdToDo)
-	}
+    fun addToDo(userId: Int, text: String): AddToDoResponseFormat {
+        var t: ToDo = ToDo()
+        t.userId = userId
+        t.text = text
+        var createdToDo: ToDo = todoRepository.save(t)
+        return AddToDoResponseFormat(createdToDo)
+    }
 
-	fun updateToDoText(id: Int, text: String): UpdateToDoTextResponseFormat {
+    fun updateToDoText(id: Int, text: String): UpdateToDoTextResponseFormat {
 
-		todoRepository.updateTextById(id, text)
+        todoRepository.updateTextById(id, text)
 
-		var todo: ToDo = todoRepository.findOneById(id)
-		return UpdateToDoTextResponseFormat(todo)
-	}
+        var todo: ToDo = todoRepository.findOneById(id)
+        return UpdateToDoTextResponseFormat(todo)
+    }
 
-	fun updateToDoCompleteFlag(id: Int): UpdateToDoCompleteFlagResponseFormat {
-		todoRepository.updateCompleteFlagById(id)
-		return UpdateToDoCompleteFlagResponseFormat("OK")
-	}
+    fun updateToDoCompleteFlag(id: Int): UpdateToDoCompleteFlagResponseFormat {
+        todoRepository.updateCompleteFlagById(id)
+        return UpdateToDoCompleteFlagResponseFormat("OK")
+    }
 
-	fun deleteToDo(id: Int): DeleteToDoResponseFormat {
-		var t: ToDo = ToDo()
-		t.id = id
-		todoRepository.delete(t)
-		return DeleteToDoResponseFormat("OK")
-	}
+    fun deleteToDo(id: Int): DeleteToDoResponseFormat {
+        var t: ToDo = ToDo()
+        t.id = id
+        todoRepository.delete(t)
+        return DeleteToDoResponseFormat("OK")
+    }
 }

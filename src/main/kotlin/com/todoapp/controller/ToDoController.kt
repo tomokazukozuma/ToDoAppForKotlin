@@ -2,6 +2,7 @@ package com.todoapp.controller
 
 import com.todoapp.facade.ToDoFacade
 import com.todoapp.requestformat.todo.AddToDoRequestFormat
+import com.todoapp.requestformat.todo.GetToDoRequestFormat
 import com.todoapp.requestformat.todo.UpdateToDoTextRequestFormat
 import com.todoapp.responseformat.todo.AddToDoResponseFormat
 import com.todoapp.responseformat.todo.DeleteToDoResponseFormat
@@ -11,12 +12,12 @@ import com.todoapp.responseformat.todo.UpdateToDoTextResponseFormat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -25,8 +26,8 @@ import org.springframework.web.bind.annotation.RestController
 class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) {
 
     @GetMapping
-    fun getToDoList(@RequestParam("userId") userId: Int): ToDoResponseFormat {
-        return todoFacade.getToDo(userId)
+    fun getToDoList(@ModelAttribute requestFormat: GetToDoRequestFormat): ToDoResponseFormat {
+        return todoFacade.getToDo(requestFormat.userId)
     }
 
     @PostMapping

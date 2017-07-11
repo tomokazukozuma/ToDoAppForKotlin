@@ -24,29 +24,29 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/todo")
 class ToDoController @Autowired constructor(private val todoFacade: ToDoFacade) {
 
-	@GetMapping
-	fun getToDoList(@RequestParam("userId") userId: Int): ToDoResponseFormat {
-		return todoFacade.getToDo(userId)
-	}
+    @GetMapping
+    fun getToDoList(@RequestParam("userId") userId: Int): ToDoResponseFormat {
+        return todoFacade.getToDo(userId)
+    }
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	fun addToDo(@RequestBody requestFormat: AddToDoRequestFormat): AddToDoResponseFormat {
-		return todoFacade.addToDo(requestFormat.userId, requestFormat.text)
-	}
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun addToDo(@RequestBody requestFormat: AddToDoRequestFormat): AddToDoResponseFormat {
+        return todoFacade.addToDo(requestFormat.userId, requestFormat.text)
+    }
 
-	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.PATCH))
-	fun updateToDoText(@PathVariable id: Int, @RequestBody requestFormat: UpdateToDoTextRequestFormat): UpdateToDoTextResponseFormat {
-		return todoFacade.updateToDoText(id, requestFormat.text)
-	}
+    @RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.PATCH))
+    fun updateToDoText(@PathVariable id: Int, @RequestBody requestFormat: UpdateToDoTextRequestFormat): UpdateToDoTextResponseFormat {
+        return todoFacade.updateToDoText(id, requestFormat.text)
+    }
 
-	@RequestMapping(value = "{id:^[0-9]+$}/complete", method = arrayOf(RequestMethod.PATCH))
-	fun updateToDoCompleteFlag(@PathVariable id: Int): UpdateToDoCompleteFlagResponseFormat {
-		return todoFacade.updateToDoCompleteFlag(id)
-	}
+    @RequestMapping(value = "{id:^[0-9]+$}/complete", method = arrayOf(RequestMethod.PATCH))
+    fun updateToDoCompleteFlag(@PathVariable id: Int): UpdateToDoCompleteFlagResponseFormat {
+        return todoFacade.updateToDoCompleteFlag(id)
+    }
 
-	@RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.DELETE))
-	fun deleteToDo(@PathVariable id: Int): DeleteToDoResponseFormat {
-		return todoFacade.deleteToDo(id)
-	}
+    @RequestMapping(value = "{id:^[0-9]+$}", method = arrayOf(RequestMethod.DELETE))
+    fun deleteToDo(@PathVariable id: Int): DeleteToDoResponseFormat {
+        return todoFacade.deleteToDo(id)
+    }
 }
